@@ -63,6 +63,10 @@ jobs:
 
     # Run tests
     - name: L0
+      # Isolate the runner-under-test from outer runner lifecycle hooks.
+      env:
+        ACTIONS_RUNNER_HOOK_JOB_STARTED: ""
+        ACTIONS_RUNNER_HOOK_JOB_COMPLETED: ""
       run: |
         ${{ matrix.devScript }} test
       working-directory: src
