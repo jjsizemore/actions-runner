@@ -7,7 +7,7 @@ on:
 
 jobs:
   check-versions:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     outputs:
       DOCKER_SHOULD_UPDATE: ${{ steps.check_docker_version.outputs.SHOULD_UPDATE }}
       DOCKER_LATEST_VERSION: ${{ steps.check_docker_version.outputs.LATEST_VERSION }}
@@ -86,7 +86,7 @@ jobs:
       contents: write
     needs: [check-versions]
     if: ${{ needs.check-versions.outputs.DOCKER_SHOULD_UPDATE == 1 && needs.check-versions.outputs.BUILDX_SHOULD_UPDATE == 1 }}
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

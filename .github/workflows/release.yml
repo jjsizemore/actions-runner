@@ -9,7 +9,7 @@ on:
 jobs:
   check:
     if: startsWith(github.ref, 'refs/heads/releases/') || github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
     - uses: actions/checkout@v6
 
@@ -84,7 +84,7 @@ jobs:
           os: windows-latest
           devScript: ./dev
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os == 'ubuntu-latest' && 'ubicloud-standard-4' || matrix.os }}
     steps:
     - uses: actions/checkout@v6
 
@@ -126,7 +126,7 @@ jobs:
 
   release:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
 
     - uses: actions/checkout@v6
@@ -285,7 +285,7 @@ jobs:
 
   publish-image:
     needs: release
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     permissions:
       contents: read
       packages: write
