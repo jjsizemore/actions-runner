@@ -19,7 +19,7 @@ jobs:
 
 
     # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
 
     steps:
     - name: Checkout repository

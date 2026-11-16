@@ -7,7 +7,7 @@ on:
 
 jobs:
   dotnet-update:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     outputs:
       SHOULD_UPDATE: ${{ steps.fetch_latest_version.outputs.SHOULD_UPDATE }}
       BRANCH_EXISTS: ${{ steps.fetch_latest_version.outputs.BRANCH_EXISTS }}
@@ -87,7 +87,7 @@ jobs:
   create-pr:
     needs: [dotnet-update]
     if: ${{ needs.dotnet-update.outputs.SHOULD_UPDATE == 1 && needs.dotnet-update.outputs.BRANCH_EXISTS == 0 }}
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
       - uses: actions/checkout@v6
         with:
